@@ -1,0 +1,124 @@
+name: EogendEssentials
+version: 1.0.0
+author: LavaPower
+main: fr.lavapower.eogendessentials.EogendEssentials
+api-version: 1.19
+prefix: EogendEssentials
+
+commands:
+  askroll:
+    usage: /<command> <target> [<roll>]
+    aliases: []
+    description: Demander à un joueur un roll (par défaut 20)
+    permission: EE.Askroll
+
+  lore:
+    usage: /<command> <add|addpos|edit|remove> [<position>] [<text>]
+    aliases: []
+    description: Gestion du lore de l'objet tenu
+    permission: EE.Lore
+
+  players:
+    usage: /<command>
+    aliases: []
+    description: Liste des joueurs en ligne
+    permission: EE.Players
+
+  renameitem:
+    usage: /<command> <name>
+    aliases: []
+    description: Renommer l'item tenu
+    permission: EE.Renameitem
+
+  roll:
+    usage: /<command> [<roll>]
+    aliases: []
+    description: Lancer un dé à x faces
+    permission: EE.Roll
+
+  sendlink:
+    usage: /<command> <link>
+    aliases: []
+    description: Envoyer un lien cliquable dans le chat
+    permission: EE.Sendlink
+
+  tpworld:
+    usage: /<command> <player> <world> <x> <y> <z>
+    aliases: []
+    description: Téléporter un joueur dans un monde à des coordonnées
+    permission: EE.Tpworld
+
+  vanish:
+    usage: /<command> [<player>]
+    aliases: []
+    description: Vanish soi-même ou un joueur
+    permission: EE.Vanish
+
+  walk:
+    usage: /<command> [<value>]
+    aliases: []
+    description: Marcher plus ou moins vite
+    permission: EE.Walk
+
+  dataitem:
+    usage: /<command> <get|modify|delete|list> [<name>] [<value>]
+    aliases: []
+    description: Modifier, afficher ou supprimer des nbt de l'item tenu
+    permission: EE.Dataitem
+
+
+permissions:
+  EE.*:
+    default: op
+    description: Permission pour toutes les commandes d'EogendEssentials
+    children:
+      EE.Askroll: true
+      EE.Lore: true
+      EE.Players: true
+      EE.Renameitem: true
+      EE.Roll: true
+      EE.Sendlink: true
+      EE.Tpworld: true
+      EE.Vanish: true
+      EE.Walk: true
+      EE.Dataitem: true
+
+  EE.Askroll:
+    default: op
+    description: Permission pour la commande Askroll
+
+  EE.Tpworld:
+    default: op
+    description: Permission pour la commande Tpworld
+
+  EE.Vanish:
+    default: op
+    description: Permission pour la commande Vanish
+
+  EE.Dataitem:
+    default: op
+    description: Permission pour la commande Dataitem
+
+  EE.Lore:
+    default: true
+    description: Permission pour la commande Lore
+
+  EE.Players:
+    default: true
+    description: Permission pour la commande Players
+
+  EE.Renameitem:
+    default: true
+    description: Permission pour la commande Renameitem
+
+  EE.Roll:
+    default: true
+    description: Permission pour la commande Roll
+
+  EE.Sendlink:
+    default: true
+    description: Permission pour la commande Sendlink
+
+  EE.Walk:
+    default: true
+    description: Permission pour la commande Walk
