@@ -46,6 +46,7 @@ public class RollCommand implements CommandExecutor, TabCompleter
             ArrayList<TextComponent> response = new ArrayList<>();
             response.add(ComponentUtils.createTextComponent(player.getDisplayName() + " a tiré " + roll + " sur son dé à " + max + " face(s)", ChatColor.LIGHT_PURPLE));
             ChatUtils.sendProximityMessage(plugin, player, response, 50);
+            plugin.getLogger().info(player.getDisplayName() + " : ROLL - " + roll);
         }
         else
             commandSender.sendMessage("Cette commande n'est utilisable que par un joueur !");
