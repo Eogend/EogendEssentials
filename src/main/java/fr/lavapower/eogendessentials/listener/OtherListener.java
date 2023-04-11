@@ -1,6 +1,7 @@
 package fr.lavapower.eogendessentials.listener;
 
 import org.bukkit.Material;
+import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -23,6 +24,9 @@ public class OtherListener implements Listener
                 event.getPlayer().sendMessage("[HRP] Fonctionnalité désactivée. Utilisez le /lay");
                 event.setCancelled(true);
             }
+
+            if(event.getClickedBlock().getBlockData().getMaterial().toString().contains("SIGN"))
+                event.getPlayer().openSign((Sign) event.getClickedBlock().getState());
         }
     }
 }
