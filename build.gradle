@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 java {
@@ -16,6 +17,8 @@ tasks.withType(JavaCompile).configureEach {
 group 'fr.lavapower.eogendessentials'
 version '1.0.0'
 
+tasks.build.dependsOn("shadowJar")
+
 repositories {
     mavenCentral()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
@@ -31,8 +34,9 @@ dependencies {
     implementation "de.tr7zw:item-nbt-api:2.11.1"
 }
 
-jar {
+shadowJar {
     archiveName "${project.name}-${project.version}.jar"
+    relocate("de.tr7zw", "shaded.de.tr7zw")
 }
 
 test {
