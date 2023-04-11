@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -16,6 +17,11 @@ public class PlayerListener implements Listener {
 
     public PlayerListener(EogendEssentials plugin) {
         this.plugin = plugin;
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        plugin.getLogger().info(event.getEntity().getDisplayName() + " : DEATH - " + event.getEntity().getLastDamageCause().getCause());
     }
 
     @EventHandler
