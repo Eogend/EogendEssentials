@@ -33,6 +33,7 @@ public class EogendEssentials extends JavaPlugin {
         registerCommand("tpworld", new TpWorldCommand());
         registerCommand("vanish", new VanishCommand(this));
         registerCommand("walk", new WalkCommand());
+        registerCommand("reloadee", new ReloadEECommand(this));
 
         // Register Events
         getServer().getPluginManager().registerEvents(new BagListener(), this);
@@ -42,6 +43,11 @@ public class EogendEssentials extends JavaPlugin {
 
         // Create Manager
         vanishManager = new VanishManager(this);
+    }
+
+    public void reload() {
+        reloadConfig();
+        configuration = Configuration.fromConfig(getConfig());
     }
 
     public Configuration getConfiguration() {
