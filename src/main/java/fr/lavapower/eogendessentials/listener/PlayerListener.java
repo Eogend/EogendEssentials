@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -22,6 +23,14 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         plugin.getLogger().info(event.getEntity().getDisplayName() + " : DEATH - " + event.getEntity().getLastDamageCause().getCause());
+    }
+
+    @EventHandler
+    public void onPlayerDamage(EntityDamageEvent e) {
+        if(e.getEntity() instanceof Player) {
+            if(e.getCause() == EntityDamageEvent.DamageCause.FLY_INTO_WALL)
+                e.setCancelled(true);
+        }
     }
 
     @EventHandler
