@@ -1,11 +1,17 @@
 name: EogendEssentials
-version: 1.1.0
+version: 1.2.0
 author: LavaPower
 main: fr.lavapower.eogendessentials.EogendEssentials
 api-version: 1.19
 prefix: EogendEssentials
 
 commands:
+  reloadee:
+    usage: /<command>
+    aliases: []
+    description: Reload le plugin EogendEssentials
+    permission: EE.ReloadEE
+
   askroll:
     usage: /<command> <target> [<roll>]
     aliases: []
@@ -82,6 +88,11 @@ permissions:
       EE.Vanish: true
       EE.Walk: true
       EE.Dataitem: true
+      EE.ReloadEE: true
+
+  EE.ReloadEE:
+    default: op
+    description: Permission pour la command ReloadEE
 
   EE.Askroll:
     default: op
