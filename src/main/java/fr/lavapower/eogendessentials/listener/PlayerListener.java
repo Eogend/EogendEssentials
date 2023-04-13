@@ -7,10 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.player.*;
 
 public class PlayerListener implements Listener {
 
@@ -31,6 +28,12 @@ public class PlayerListener implements Listener {
             if(e.getCause() == EntityDamageEvent.DamageCause.FLY_INTO_WALL)
                 e.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        if(plugin.getConfiguration().fly().contains(event.getPlayer().getUniqueId().toString()))
+            event.getPlayer().setAllowFlight(true);
     }
 
     @EventHandler
