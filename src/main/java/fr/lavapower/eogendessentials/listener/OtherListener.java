@@ -1,15 +1,28 @@
 package fr.lavapower.eogendessentials.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityInteractEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class OtherListener implements Listener
 {
+    @EventHandler
+    public void onEntityInteract(PlayerInteractEntityEvent event) {
+        if(event.getRightClicked() instanceof Goat || event.getRightClicked() instanceof Cow ||
+                event.getRightClicked() instanceof Sheep || event.getRightClicked() instanceof Chicken ||
+                event.getRightClicked() instanceof Pig) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ride "+event.getPlayer().getName()+" mount "+event.getRightClicked().getUniqueId());
+        }
+    }
+
     @EventHandler
     public void onPlaceBlock(BlockPlaceEvent event) {
         if(event.getBlockPlaced().getBlockData().getMaterial() == Material.TRIPWIRE_HOOK)
