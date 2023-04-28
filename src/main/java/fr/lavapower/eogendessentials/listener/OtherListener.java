@@ -11,15 +11,17 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class OtherListener implements Listener
 {
     @EventHandler
     public void onEntityInteract(PlayerInteractEntityEvent event) {
-        if(event.getRightClicked() instanceof Goat || event.getRightClicked() instanceof Cow ||
-                event.getRightClicked() instanceof Sheep || event.getRightClicked() instanceof Chicken ||
-                event.getRightClicked() instanceof Pig) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ride "+event.getPlayer().getName()+" mount "+event.getRightClicked().getUniqueId());
+        Entity rightClicked = event.getRightClicked();
+        if(rightClicked instanceof Goat || rightClicked instanceof Cow ||
+                rightClicked instanceof Sheep || rightClicked instanceof Chicken ||
+                rightClicked instanceof Pig || rightClicked instanceof Bee) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ride "+event.getPlayer().getName()+" mount "+ rightClicked.getUniqueId());
         }
     }
 
@@ -38,8 +40,14 @@ public class OtherListener implements Listener
                 event.setCancelled(true);
             }
 
-            if(event.getClickedBlock().getBlockData().getMaterial().toString().contains("SIGN"))
+            else if(event.getClickedBlock().getBlockData().getMaterial().toString().contains("SIGN") && !event.getPlayer().isSneaking())
                 event.getPlayer().openSign((Sign) event.getClickedBlock().getState());
+
+            else if(event.getClickedBlock().getBlockData().getMaterial() == Material.LANTERN && !event.hasItem())
+            {
+                event.getClickedBlock().setType(Material.AIR);
+                event.getPlayer().getInventory().setItemInMainHand(new ItemStack(Material.LANTERN));
+            }
         }
     }
 }
